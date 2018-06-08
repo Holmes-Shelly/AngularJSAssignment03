@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app='NarrowItDownApp'>
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="angular.min.js"></script>
+    <script src="assignment03(0607).js"></script>
+	<link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+	<style>
+	p.name{
+	    font-size: 20px;
+	}
+	p.description{
+	    font-size: 16px;
+	}
+	span{
+	    color: blue;
+	}
+	.emptyMessage{
+        color: red;
+        font-size: 20px;
+     }
+	</style>
+  </head>
+<body ng-controller='NarrowItDownController as menu'>
+   <div class="container">
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+
+    <div class="form-group">
+      <input type="text" placeholder="search term" class="form-control" ng-model="menu.keyWord">
+    </div>
+    <div class="form-group narrow-button">
+      <button class="btn btn-primary" ng-click="menu.getMatchedMenuItems()">Narrow It Down For Me!</button>
+    </div>
+    </br></br></br>
+    <!-- found-items should be implemented as a component -->
+	<ul>
+	  <li ng-repeat='item in menu.found'>
+	    <p class="name"><span>{{ item.name }}</span>
+		[{{ item.short_name }}]
+		<found-items items="menu.found" on-remove="menu.removeItem(index)"></found-items>
+		</p>
+		<p class="description">description: {{item.description }}</p>
+	  </li>
+	</ul>
+	<div class="emptyMessage">{{ menu.msg }}</div>
+	
+  </div>
+
+</body>
+</html>
