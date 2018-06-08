@@ -1,1 +1,9 @@
-<button ng-click="menu.onRemove({index: $index});">Remove Item</button>
+<ul>
+  <li ng-repeat='item in items'>
+    <p><span>{{ item.name }}</span>&nbsp[{{ item.short_name }}]&nbsp
+	<button class="btn btn-default" ng-click="onRemove({index: $index});"><span class="glyphicon glyphicon-remove"></span> Remove Item</button>
+	</p>
+	<p>description: {{item.description }}</p>
+  </li>
+</ul>
+
