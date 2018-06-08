@@ -16,7 +16,6 @@ function foundItems() {
       onRemove: '&'
     },
   };
-
   return ddo;
 }
 
@@ -27,16 +26,9 @@ function NarrowItDownController(MenuSearchService) {
   
   menu.getMatchedMenuItems = function(){
     var promise = MenuSearchService.getMatchedMenuItems(menu.keyWord);
-
     promise.then(function (response) {
       menu.found = response;
 	  console.log("menu.found is", menu.found);
-	  if (menu.found.length){
-		menu.msg = "";
-	  }
-	  else {
-		menu.msg = "Nothing found!";
-	  };
     })
     .catch(function (error) {
       console.log("Something went terribly wrong.");
@@ -44,11 +36,10 @@ function NarrowItDownController(MenuSearchService) {
   };
   
   menu.removeItem = function(itemIndex){
-	console.log("deleted item is", menu.found[itemIndex]);
+	console.log("deleted item is", menu.found[itemIndex].name);
 	menu.found.splice(itemIndex, 1);
   };
 	  
-
 }
 
 
@@ -73,13 +64,11 @@ function MenuSearchService($http, ApiBasePath) {
 		  foundItems.push(menu[i]);
 		};
 	  };
-
 	  return foundItems;
 	})
 	//console.log("response is", response);
     return response
   };
-  
   };
 
 })();
